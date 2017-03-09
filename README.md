@@ -40,12 +40,14 @@ to be atomic without the useage of blocks.
    ```//Act - this is where you execute your code```
    
    ```//Assert - here you issue your assert(s)```
-* Your test names should follow the pattern ```MethodName**Should**ExpectedBehavior**When**StateUnderTest```
+* Your test names should follow the pattern 
+
+```MethodName**Should**ExpectedBehavior**When**StateUnderTest```
+
   e.g. 
-       ```checkAgeShouldThrowNullPointerWhenNullPersonPassedIn```
-       
-       ```sizeShouldReturnZeroWhenListIsEmpty```
   
+       ```checkAgeShouldThrowNullPointerWhenNullPersonPassedIn```
+       ```sizeShouldReturnZeroWhenListIsEmpty```
   
   ### Grading
    * Did you follow the style guides?
