@@ -40,16 +40,15 @@ to be atomic without the useage of blocks.
    ```//Act - this is where you execute your code```
    
    ```//Assert - here you issue your assert(s)```
-* Your test names should follow the pattern 
-
-```MethodName**Should**ExpectedBehavior**When**StateUnderTest```
+* Your test names should follow the pattern MethodName**Should**ExpectedBehavior**When**StateUnderTest
 
   e.g. 
   
        ```checkAgeShouldThrowNullPointerWhenNullPersonPassedIn```
        ```sizeShouldReturnZeroWhenListIsEmpty```
   
-  ### Grading
+
+### Grading
    * Did you follow the style guides?
    * Did you find all the errors in the queue?
    * How well organized and thought out are the tests?
