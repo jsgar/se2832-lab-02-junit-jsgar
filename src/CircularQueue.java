@@ -2,6 +2,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/*
+ * SE2832
+ * Spring 2017
+ * Jenna Sgarlata
+ * 3/18/2017
+ */
+
 /**
  * @author schilling This class will implement a circular queue. The user can
  *         use this class to store items in an efficient manner.
@@ -47,10 +54,10 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 	 */
 	public CircularQueue(int maxQueueSize) throws Exception {
 		super();
-		if (maxQueueSize < 0) {
+		if (maxQueueSize <= 0) { //todo: max size allowed for zero (50)
 			throw new Exception("Queue capacity invalid.");
 		}
-		
+		capacity = maxQueueSize; //TODO: constructor did not set capacity (53)
 		clear();
 	}
 
@@ -78,16 +85,17 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 		if (size == 0) {
 			throw new NoSuchElementException("Circular queue is empty.");
 		} else {
-			return dataArray[tail];
+			return dataArray[head]; //TODO: returned the last element. not the first (81)
 		}
 	}
 
 	@Override
 	public boolean offer(E arg0) {
 		boolean retVal = false;
+
 		if (this.size < this.capacity) {
+			tail = (tail + 1) % capacity; //TODO: the tail needed to be incremented before being accessed (90)
 			this.dataArray[tail] = arg0;
-			tail = (tail + 1) % capacity;
 			this.size++;
 			retVal = true;
 		}
@@ -99,7 +107,7 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 		if (size == 0) {
 			return null;
 		} else {
-			return dataArray[tail];
+			return dataArray[head]; //todo: returned the last element, not the first (102)
 		}
 	}
 
@@ -109,7 +117,7 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 		if (size == 0) {
 			// DO nothing.
 		} else {
-			retVal = dataArray[tail];
+			retVal = dataArray[head]; //todo: returned the last element, not the first (112)
 			dataArray[head] = null;
 			head = (head + 1) % capacity;
 			size--;
@@ -144,8 +152,8 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 	@Override
 	public void clear() {
 		dataArray = ((E[]) new Object[capacity]);
-		tail = 1;
-		head = 1;
+		tail = -1; //TODO: tail should be negative 1 at the start (147)
+		head = 0; //todo: head should start at 0 (148)
 		size = 0;
 	}
 
@@ -206,7 +214,7 @@ public class CircularQueue<E> implements FixedSizeQueueInterface<E> {
 		Object retVal[] = new Object[size];
 
 		for (int index = 0; index < size; index++) {
-			int myOffset = (tail + index) % this.capacity;
+			int myOffset = (head + index) % this.capacity; //todo: offset was calculated with reference to tail, not head (210)
 			retVal[index] = this.dataArray[myOffset];
 		}
 		return retVal;
